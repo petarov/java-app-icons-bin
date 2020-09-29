@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id "org.mikeneck.graalvm-native-image" version "0.8.0"
+}
+
+group 'net.vexelon'
+version '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'net.vexelon:java-app-icons:1.1'
+}
+
+nativeImage {
+    graalVmHome = System.getenv("GRAALVM_HOME")
+    mainClass = 'net.vexelon.appicons.bin.Main'
+    executableName = "app-icons-bin"
+    arguments(
+            "--no-fallback",
+            "--enable-all-security-services",
+            "--initialize-at-run-time=net.vexelon.appicons.bin",
+            "--report-unsupported-elements-at-runtime"
+    )
+}
