@@ -11,7 +11,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'net.vexelon:java-app-icons:1.1'
+    implementation 'net.vexelon:java-app-icons:1.1',
+            'info.picocli:picocli:4.5.1'
 }
 
 nativeImage {
@@ -20,7 +21,8 @@ nativeImage {
     executableName = "app-icons-bin"
     arguments(
             "--no-fallback",
-            "--enable-all-security-services",
+            "--enable-https",
+            "--enable-url-protocols=https",
             "--initialize-at-run-time=net.vexelon.appicons.bin",
             "--report-unsupported-elements-at-runtime"
     )
