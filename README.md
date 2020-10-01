@@ -6,7 +6,7 @@ App Icons Downloader
 
 Download app icons for any App Store or Play Store app. 
 
-This executable is built using the [java-app-icons](https://github.com/petarov/java-app-icons) library.
+This executable is built using the [java-app-icons](https://github.com/petarov/java-app-icons) library and [Graal VM Native Image](https://www.graalvm.org/reference-manual/native-image).
 
 # Installation
 
