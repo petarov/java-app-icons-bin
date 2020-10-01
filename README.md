@@ -10,7 +10,9 @@ This executable is built using the [java-app-icons](https://github.com/petarov/j
 
 # Installation
 
-// TODO
+Binaries for `Linux x86_64` and `macOS` are available in [releases](https://github.com/petarov/java-app-icons-bin/releases).
+
+Linux binaries were tested on Ubuntu and CentOS.
 
 # Usage
 
