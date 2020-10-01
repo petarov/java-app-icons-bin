@@ -1,6 +1,9 @@
 package net.vexelon.appicons.bin;
 
+import net.vexelon.appicons.AbstractBuilder;
 import net.vexelon.appicons.AppIcons;
+import net.vexelon.appicons.BuilderConfig;
+import net.vexelon.appicons.appstore.AppStoreBuilder;
 import net.vexelon.appicons.wireframe.BioDownloader;
 import net.vexelon.appicons.wireframe.entities.IconURL;
 import picocli.CommandLine;
@@ -39,25 +42,31 @@ public class Executor implements Callable<Integer> {
             }
         } else {
             var destination = Path.of(outputPath);
-            downloader.getMultiFiles(appIds, destination);
+            var total = downloader.getMultiFiles(appIds, destination).entrySet().stream().mapToLong(entry ->
+                    entry.getValue().size()).sum();
+            System.out.println(total + " icon files downloaded to " + destination.toAbsolutePath().toString());
         }
     }
 
     @Override
     public Integer call() throws Exception {
         try {
+            AbstractBuilder<?> builder;
+
             switch (storeType) {
-                case APPSTORE: {
-                    var builder = AppIcons.appstore();
-                    download(builder.build());
+                case APPSTORE:
+                    builder = AppIcons.appstore();
                     break;
-                }
-                case PLAYSTORE: {
-                    var builder = AppIcons.playstore();
-                    download(builder.build());
+
+                case PLAYSTORE:
+                    builder = AppIcons.playstore();
                     break;
-                }
+
+                default:
+                    return -1;
             }
+
+            download(builder.namingStrategy(BuilderConfig.NamingStrategy.APPID_AND_SIZE).build());
 
             return 0;
         } catch (Throwable t) {
