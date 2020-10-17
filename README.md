@@ -1,6 +1,7 @@
 App Icons Downloader
 =====================
 
+![build](https://github.com/petarov/java-app-icons-bin/workflows/release/badge.svg)
 ![App Store](https://www.apple.com/v/ios/app-store/d/images/overview/app_store_icon__fngcxe43zo2u_large.jpg)
 ![Google Play](https://www.gstatic.com/android/market_images/web/play_prism_hlock_2x.png)
 
